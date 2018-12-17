@@ -75,7 +75,7 @@
 			case "parentsvschildrenperhoureachday":
 				const parentsvschildrenperhoureachday = await pool.query(`select to_char(created_utc, 'YYYY-MM-DD-HH24') as date, sum(case when link_id=parent_id then 1 else 0 end)::int as parents, sum(case when link_id!=parent_id then 1 else 0 end)::int as children from comments inner join threads on link_id = long_id where short_id='${threadname}' group by date order by date;`);
 				const pvc = [parentsvschildrenperhoureachday.rows.map(row => ({"key": new Date(...row.date.split("-")), "value": row.parents})), parentsvschildrenperhoureachday.rows.map((row) => ({"key": new Date(...row.date.split("-")), "value": row.children}))];
-				pvc["keys"] = parentsvschildrenperhoureachday.rows.map((row) => new Date(...row.date.split("-")));
+				pvc["allKeys"] = parentsvschildrenperhoureachday.rows.map((row) => new Date(...row.date.split("-")));
 				console.log(pvc);
 				createGraph(`parentsvschildrenperhoureachday_${threadname}`, "Parents vs children comments per hour each day (ignore that the axis is in ms from the epoch)", d3nLine, pvc, {"lineColors": ['steelblue', 'darkorange']});
 				break;
