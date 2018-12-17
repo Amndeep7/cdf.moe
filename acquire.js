@@ -72,7 +72,7 @@
 		let tobeinsert = thread.comments.length;
 		let completedinsert = 0;
 		const recursive_insert = (c) => {
-			console.log(c.name, c.replies.length);
+			// console.log(c.name, c.replies.length);
 			tobeinsert += c.replies ? c.replies.length : 0;
 			const insertcommand = `
 				insert into comments (name, link_id, parent_id, author, depth, score, gid_1, gid_2, gid_3, body, created_utc, edited)
