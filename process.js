@@ -13,7 +13,7 @@
 		}
 
 		const threadname = process.argv[2];
-		const graphs = process.argv.slice(3);
+		let graphs = process.argv.slice(3);
 
 		const { Pool } = require("pg");
 		const pool = new Pool({
@@ -43,6 +43,9 @@
 			output(name, bar, { "width": 1280, "height": 720 });
 		};
 
+		if(graphs[0] === "all") {
+			graphs = ["commentsperday", "commentsperhour", "commentsperuser", "commentsperuserhistogram", "commentsperuserdecile", "parentsvschildrenperhoureachday", "cdf"];
+		}
 		for (let i = 0; i < graphs.length; i++) {
 			switch(graphs[i]) {
 			case "commentsperday":
