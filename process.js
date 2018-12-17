@@ -79,6 +79,33 @@
 				console.log(pvc);
 				createGraph(`parentsvschildrenperhoureachday_${threadname}`, "Parents vs children comments per hour each day (ignore that the axis is in ms from the epoch)", d3nLine, pvc, {"lineColors": ['steelblue', 'darkorange']});
 				break;
+			case "cdf":
+				const tname = await pool.query(`select long_id from threads where short_id='${threadname}'`);
+				const parents = await pool.query(`select parent_id, name from comments inner join threads on link_id = long_id where short_id='${threadname}' order by created_utc`);
+				const depths = {};
+				for (let j = 0; j < parents.rows.length; j++) {
+					if(parents.rows[j].parent_id === tname.rows[0].long_id) {
+						depths[parents.rows[j].name] = 1;
+					} else {
+						depths[parents.rows[j].name] = 1 + depths[parents.rows[j].parent_id];
+					}
+				}
+				const depthvalues = Object.values(depths);
+				const freqdepths = [0];
+				for (let j = 0; j < depthvalues.length; j++) {
+					if(freqdepths[depthvalues[j]]) {
+						freqdepths[depthvalues[j]]++;
+					} else {
+						freqdepths[depthvalues[j]] = 1;
+					}
+				}
+				for (let j = 1; j < freqdepths.length; j++) {
+					freqdepths[j] += freqdepths[j-1];
+				}
+				console.log(freqdepths);
+				const cdf = freqdepths.map((d,i) => ({ "key": i, "value": d/depthvalues.length }));
+				createGraph(`cdf_${threadname}`, "CDF (depth of comments vs percent of comments at or below that depth)", d3nLine, cdf);
+				break;
 			default:
 				console.log("No handler for", graphs[i]);
 			}
