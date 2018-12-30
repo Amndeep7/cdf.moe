@@ -44,7 +44,7 @@
 		};
 
 		if(graphs[0] === "all") {
-			graphs = ["commentsperday", "commentsperhour", "commentsperuser", "commentsperuserhistogram", "commentsperuserdecile", "parentsvschildrenperhoureachday", "cdf"];
+			graphs = ["commentsperday", "commentsperhour", "commentsperuser", "scoreperuser", "commentsperuserhistogram", "commentsperuserdecile", "parentsvschildrenperhoureachday", "cdf"];
 		}
 		for (let i = 0; i < graphs.length; i++) {
 			switch(graphs[i]) {
@@ -64,6 +64,12 @@
 				commentsperuser.rows = commentsperuser.rows.map((row) => { return { "key": parseInt(row.key), "value": row.value } });
 				console.log(commentsperuser.rows);
 				createGraph(`commentsperuser_${threadname}`, "Number of comments per (anonymized) user", d3nBar, commentsperuser.rows);
+				break;
+			case "scoreperuser":
+				const scoreperuser = await pool.query(`select row_number() over (order by cumulativescore desc) as key, cumulativescore::int as value from (select sum(score) as cumulativescore from comments inner join threads on link_id = long_id where short_id='${threadname}' group by author) as temp;`);
+				scoreperuser.rows = scoreperuser.rows.map((row) => { return { "key": parseInt(row.key), "value": row.value } });
+				console.log(scoreperuser.rows);
+				createGraph(`scoreperuser_${threadname}`, "Cumulative score per (anonymized) user", d3nBar, scoreperuser.rows);
 				break;
 			case "commentsperuserhistogram":
 				const commentsperuserhistogram = await pool.query(`with temp1 as (select count(*) as commentcount from comments inner join threads on link_id = long_id where short_id='${threadname}' group by author) select width_bucket(commentcount, min, max+1, 10) as buckets, int8range(min(commentcount), max(commentcount), '[]') as key, count(*)::int as value from temp1, (select min(commentcount), max(commentcount) from temp1) as temp2 group by buckets order by buckets;`);
