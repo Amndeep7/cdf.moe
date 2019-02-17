@@ -20,7 +20,7 @@
 
 		r.config({
 			"continueAfterRatelimitError": true,
-			"requestDelay": 1050,
+			"requestDelay": 1200,
 		});
 
 		const thread = await r.getSubmission(threadname).expandReplies();
