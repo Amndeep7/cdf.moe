@@ -20,3 +20,9 @@ Makes graphs from comments on threads using Postgres and Node
 
 ## Other stuff
 - Issues and PRs welcome, particularly for adding on graph types
+
+----
+
+## Interesting queries
+### Ranking users over number of comments made
+`select rank() over (order by count desc), author, count from (select author, count(author) from comments inner join threads on link_id = long_id where short_id='short_name_for_thread' group by author order by count desc) x;`

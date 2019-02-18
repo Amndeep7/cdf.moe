@@ -44,7 +44,7 @@
 		};
 
 		if(graphs[0] === "all") {
-			graphs = ["commentsperday", "commentsperhour", "commentsperuser", "scoreperuser", "commentsperuserhistogram", "commentsperuserdecile", "parentsvschildrenperhoureachday", "cdf"];
+			graphs = ["commentsperday", "commentsperhour", "commentsperuser", "scoreperuser", "commentsperuserhistogram", "commentsperuserdecile", "parentsvschildrenperhoureachday", "cdf", "commentfacecount"];
 		}
 		for (let i = 0; i < graphs.length; i++) {
 			switch(graphs[i]) {
@@ -115,6 +115,19 @@
 				const cdf = freqdepths.map((d,i) => ({ "key": i, "value": d/depthvalues.length }));
 				createGraph(`cdf_${threadname}`, "CDF (depth of comments vs percent of comments at or below that depth)", d3nLine, cdf);
 				break;
+			case "commentfacecount":
+				const fs = require("fs");
+				const commentfacecount = await pool.query(`with matches as (select regexp_matches(body, '\\[.*?\\]\\(#([\\w-]+).*?\\)', 'gm') from comments inner join threads on link_id = long_id where short_id='${threadname}') select regexp_matches[1], count(regexp_matches) from matches group by regexp_matches order by count desc;`);
+				console.log(commentfacecount.rows);
+				const commentfacestream = fs.createWriteStream(`commentfacecount_${threadname}.csv`);
+				commentfacestream.write("commentface,count\n");
+				for (let j = 0; j < commentfacecount.rows.length; j++) {
+					commentfacestream.write(`${commentfacecount.rows[j].regexp_matches},${commentfacecount.rows[j].count}\n`);
+				}
+				commentfacestream.on("finish", () => {
+					console.log("printed comment faces file");
+				});
+				commentfacestream.end();
 			default:
 				console.log("No handler for", graphs[i]);
 			}
