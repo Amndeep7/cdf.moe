@@ -28,3 +28,9 @@ Makes graphs from comments on threads using Postgres and Node
 ```sql
 select rank() over (order by count desc), author, count from (select author, count(author) from comments inner join threads on link_id = long_id where short_id='short_name_for_thread' group by author order by count desc) x;
 ```
+### Seeing which users received the most replies
+```sql
+with t1 as (select parent_id, count(*) as c from comments inner join threads on link_id = long_id where short_id = 'short_name_for_thread' and link_id != parent_id group by parent_id),
+t2 as (select author, name from comments inner join threads on link_id = long_id where short_id = 'short_name_for_thread')
+select t2.author, sum(t1.c) as s from t1, t2 where t1.parent_id = t2.name group by author order by s desc;
+```
