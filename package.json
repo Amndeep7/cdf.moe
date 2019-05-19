@@ -7,7 +7,7 @@
     "d3-node": "^2.1.0",
     "d3node-barchart": "^0.0.6",
     "d3node-linechart": "^0.1.2",
-    "d3node-output": "^1.0.2",
+    "d3node-output": "^1.0.3",
     "dotenv": "^6.2.0",
     "pg": "^7.6.1",
     "snoowrap": "^1.15.2"
