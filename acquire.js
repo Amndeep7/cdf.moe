@@ -72,7 +72,7 @@
 		let tobeinsert = thread.comments.length;
 		let completedinsert = 0;
 		const recursive_insert = (c) => {
-			// console.log(c.name, c.replies.length);
+			// console.log(c.name, c.replies.length, typeof(c.gildings.gid_1));
 			tobeinsert += c.replies ? c.replies.length : 0;
 			const insertcommand = `
 				insert into comments (name, link_id, parent_id, author, depth, score, gid_1, gid_2, gid_3, body, created_utc, edited)
@@ -80,7 +80,7 @@
 				on conflict (name)
 				do update set (score, gid_1, gid_2, gid_3, body, edited) = ($6, $7, $8, $9, $10, to_timestamp($12) at time zone 'utc')
 				where comments.name = $1;`;
-			const insertvalues = [c.name, c.link_id, c.parent_id, c.author.name, c.depth, c.score, c.gildings.gid_1, c.gildings.gid_2, c.gildings.gid_3, c.body, c.created_utc, c.edited ? c.edited : null];
+			const insertvalues = [c.name, c.link_id, c.parent_id, c.author.name, c.depth, c.score, typeof(c.gildings.gid_1) === "number" ? c.gildings.gid_1 : 0, typeof(c.gildings.gid_2) === "number" ? c.gildings.gid_2 : 0, typeof(c.gildings.gid_3) === "number" ? c.gildings.gid_3 : 0, c.body, c.created_utc, c.edited ? c.edited : null];
 			pool.query(insertcommand, insertvalues).then(() => {
 				completedinsert++;
 			});
