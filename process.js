@@ -52,41 +52,41 @@
 				const commentsperday = await pool.query(`select count(*)::int as value, to_char(date(created_utc), 'Day') as key from comments inner join threads on link_id = long_id where short_id='${threadname}' group by date(created_utc) order by date(created_utc);`);
 				commentsperday.rows[commentsperday.rows.length-1].key = "Next Friday";
 				console.log(commentsperday.rows);
-				createGraph(`commentsperday_${threadname}`, "Comments per day", d3nBar, commentsperday.rows);
+				createGraph(`output/commentsperday_${threadname}`, "Comments per day", d3nBar, commentsperday.rows);
 				break;
 			case "commentsperhour":
 				const commentsperhour = await pool.query(`select count(*)::int as value, extract(hour from created_utc)::int as key from comments inner join threads on link_id = long_id where short_id='${threadname}' group by extract(hour from created_utc) order by key;`);
 				console.log(commentsperhour.rows);
-				createGraph(`commentsperhour_${threadname}`, "Cumulative sum of comments per hour", d3nBar, commentsperhour.rows);
+				createGraph(`output/commentsperhour_${threadname}`, "Cumulative sum of comments per hour", d3nBar, commentsperhour.rows);
 				break;
 			case "commentsperuser":
 				const commentsperuser = await pool.query(`select row_number() over (order by commentcount desc) as key, commentcount::int as value from (select count(*) as commentcount from comments inner join threads on link_id = long_id where short_id='${threadname}' group by author) as temp;`);
 				commentsperuser.rows = commentsperuser.rows.map((row) => { return { "key": parseInt(row.key), "value": row.value } });
 				console.log(commentsperuser.rows);
-				createGraph(`commentsperuser_${threadname}`, "Number of comments per (anonymized) user", d3nBar, commentsperuser.rows);
+				createGraph(`output/commentsperuser_${threadname}`, "Number of comments per (anonymized) user", d3nBar, commentsperuser.rows);
 				break;
 			case "scoreperuser":
 				const scoreperuser = await pool.query(`select row_number() over (order by cumulativescore desc) as key, cumulativescore::int as value from (select sum(score) as cumulativescore from comments inner join threads on link_id = long_id where short_id='${threadname}' group by author) as temp;`);
 				scoreperuser.rows = scoreperuser.rows.map((row) => { return { "key": parseInt(row.key), "value": row.value } });
 				console.log(scoreperuser.rows);
-				createGraph(`scoreperuser_${threadname}`, "Cumulative score per (anonymized) user", d3nBar, scoreperuser.rows);
+				createGraph(`output/scoreperuser_${threadname}`, "Cumulative score per (anonymized) user", d3nBar, scoreperuser.rows);
 				break;
 			case "commentsperuserhistogram":
 				const commentsperuserhistogram = await pool.query(`with temp1 as (select count(*) as commentcount from comments inner join threads on link_id = long_id where short_id='${threadname}' group by author) select width_bucket(commentcount, min, max+1, 10) as buckets, int8range(min(commentcount), max(commentcount), '[]') as key, count(*)::int as value from temp1, (select min(commentcount), max(commentcount) from temp1) as temp2 group by buckets order by buckets;`);
 				console.log(commentsperuserhistogram.rows);
-				createGraph(`commentsperuserhistogram_${threadname}`, "Histogram of number of comments per user", d3nBar, commentsperuserhistogram.rows);
+				createGraph(`output/commentsperuserhistogram_${threadname}`, "Histogram of number of comments per user", d3nBar, commentsperuserhistogram.rows);
 				break;
 			case "commentsperuserdecile":
 				const commentsperuserdecile = await pool.query(`select ntile, avg(commentcount)::double precision as value, min(commentcount), max(commentcount), int8range(min(commentcount), max(commentcount), '[]') as key from (select commentcount, ntile(10) over (order by commentcount) as ntile from (select count(*) as commentcount from comments inner join threads on link_id = long_id where short_id='${threadname}' group by author) as temp1) as temp2 group by ntile order by ntile;`);
 				console.log(commentsperuserdecile.rows);
-				createGraph(`commentsperuserdecile_${threadname}`, "Decile chart of number of comments per user (showcasing the average for each decile)", d3nBar, commentsperuserdecile.rows);
+				createGraph(`output/commentsperuserdecile_${threadname}`, "Decile chart of number of comments per user (showcasing the average for each decile)", d3nBar, commentsperuserdecile.rows);
 				break;
 			case "parentsvschildrenperhoureachday":
 				const parentsvschildrenperhoureachday = await pool.query(`select to_char(created_utc, 'YYYY-MM-DD-HH24') as date, sum(case when link_id=parent_id then 1 else 0 end)::int as parents, sum(case when link_id!=parent_id then 1 else 0 end)::int as children from comments inner join threads on link_id = long_id where short_id='${threadname}' group by date order by date;`);
 				const pvc = [parentsvschildrenperhoureachday.rows.map(row => ({"key": new Date(...row.date.split("-")), "value": row.parents})), parentsvschildrenperhoureachday.rows.map((row) => ({"key": new Date(...row.date.split("-")), "value": row.children}))];
 				pvc["allKeys"] = parentsvschildrenperhoureachday.rows.map((row) => new Date(...row.date.split("-")));
 				console.log(pvc);
-				createGraph(`parentsvschildrenperhoureachday_${threadname}`, "Parents vs children comments per hour each day (ignore that the axis is in ms from the epoch)", d3nLine, pvc, {"lineColors": ['steelblue', 'darkorange']});
+				createGraph(`output/parentsvschildrenperhoureachday_${threadname}`, "Parents vs children comments per hour each day (ignore that the axis is in ms from the epoch)", d3nLine, pvc, {"lineColors": ['steelblue', 'darkorange']});
 				break;
 			case "cdf":
 				const tname = await pool.query(`select long_id from threads where short_id='${threadname}'`);
@@ -113,13 +113,13 @@
 				}
 				console.log(freqdepths);
 				const cdf = freqdepths.map((d,i) => ({ "key": i, "value": d/depthvalues.length }));
-				createGraph(`cdf_${threadname}`, "CDF (depth of comments vs percent of comments at or below that depth)", d3nLine, cdf);
+				createGraph(`output/cdf_${threadname}`, "CDF (depth of comments vs percent of comments at or below that depth)", d3nLine, cdf);
 				break;
 			case "commentfacecount":
 				const fs = require("fs");
 				const commentfacecount = await pool.query(`with matches as (select regexp_matches(body, '\\[.*?\\]\\(#([\\w-]+).*?\\)', 'gm') from comments inner join threads on link_id = long_id where short_id='${threadname}') select regexp_matches[1], count(regexp_matches) from matches group by regexp_matches order by count desc;`);
 				console.log(commentfacecount.rows);
-				const commentfacestream = fs.createWriteStream(`commentfacecount_${threadname}.csv`);
+				const commentfacestream = fs.createWriteStream(`output/commentfacecount_${threadname}.csv`);
 				commentfacestream.write("commentface,count\n");
 				for (let j = 0; j < commentfacecount.rows.length; j++) {
 					commentfacestream.write(`${commentfacecount.rows[j].regexp_matches},${commentfacecount.rows[j].count}\n`);
