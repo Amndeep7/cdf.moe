@@ -9,8 +9,8 @@
     "d3node-linechart": "^0.1.2",
     "d3node-output": "^1.0.3",
     "dotenv": "^6.2.0",
-    "pg": "^7.6.1",
-    "snoowrap": "^1.15.2"
+    "pg": "^7.11.0",
+    "snoowrap": "^1.17.0"
   },
   "devDependencies": {},
   "scripts": {
