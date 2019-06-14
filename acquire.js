@@ -7,6 +7,12 @@
 			throw "no thread argument";
 		}
 
+		let logging = false;
+		if (process.argv[3]) {
+			console.log("logging enabled");
+			logging = true;
+		}
+
 		const threadname = process.argv[2];
 
 		const snoowrap = require("snoowrap");
@@ -24,7 +30,9 @@
 		});
 
 		const thread = await r.getSubmission(threadname).expandReplies();
-		// console.log(thread);
+		if (logging) {
+			console.log(thread);
+		}
 		console.log("got thread - num comments:", thread.num_comments, thread.comments.length);
 
 		const { Pool } = require("pg");
