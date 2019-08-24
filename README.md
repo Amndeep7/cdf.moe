@@ -1,11 +1,12 @@
 # redditthreadinspector
-Makes graphs from comments on threads using Postgres and Node
+Makes graphs from comments on threads using Postgres and Python
 
 ## Preparing for the data
-- Install node
-- Install and initialize postgres
+- Install and initialize [postgres](https://www.postgresql.org/)
+- Install [psaw](https://github.com/dmarx/psaw)
+- Install [psycopg and its dependencies](http://initd.org/psycopg/docs/install.html)
 - Fill out the info needed in .env.example and rename it to .env
-- Run `npm install`
+- Run `pipenv install`
 
 ## Acquiring the data
 - Pick a reddit thread and grab the thread ID: https://www.reddit.com/r/subreddit/comments/thread_id/title/otherstuffsometimes
@@ -34,3 +35,4 @@ with t1 as (select parent_id, count(*) as c from comments inner join threads on 
 t2 as (select author, name from comments inner join threads on link_id = long_id where short_id = 'short_name_for_thread')
 select t2.author, sum(t1.c) as s from t1, t2 where t1.parent_id = t2.name group by author order by s desc;
 ```
+- Install [psaw](https://github.com/dmarx/psaw)
