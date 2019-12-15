@@ -19,7 +19,7 @@ def get_comments(threadname):
 
 
 def add_depth(comments, id_map):
-    cache = {comments[0].d_['link_id']: 0}
+    cache = {comments[0]['link_id']: 0}
 
     def depth(comment_id):
         if comment_id in cache:
@@ -28,16 +28,17 @@ def add_depth(comments, id_map):
             print(comment_id, 'missing from dataset')
             return -1000
         else:
-            cache[comment_id] = 1 + depth(id_map[comment_id].d_['parent_id'])
+            cache[comment_id] = 1 + depth(id_map[comment_id]['parent_id'])
             return cache[comment_id]
 
-    list(map(lambda comment: comment.d_.update({'depth': depth(comment.d_['id'])}), comments))
+    list(map(lambda comment: comment.update({'depth': depth(comment['id'])}), comments))
 
 
 def acquire_comments(threadname):
     comments = get_comments(threadname)
-    list(map(lambda comment: comment.d_.update({'id': 't1_' + comment.d_['id']}), comments))
-    id_map = {c.d_['id']: c for c in comments}
+    comments = list(map(lambda comment: comment.d_, comments))
+    list(map(lambda comment: comment.update({'id': 't1_' + comment['id']}), comments))
+    id_map = {c['id']: c for c in comments}
     add_depth(comments, id_map)
     return comments
 
@@ -50,6 +51,7 @@ def main():
     comments = acquire_comments(threadname)
 
     # pprint(comments)
+    pprint(comments[-1])
     pprint(len(comments))
 
     '''
