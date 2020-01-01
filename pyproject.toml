@@ -6,7 +6,7 @@ description = "Make graphs from comments on threads"
 license = "MIT"
 
 authors = [
-	"Amndeep Singh Mann <amndeep.dev@gmail.com>"
+	"Amndeep Singh Mann <me@asm.works>"
 ]
 
 readme = "README.md"
