@@ -1,12 +1,36 @@
+from argparse import Action, ArgumentParser
 from datetime import datetime, timezone
 from itertools import chain, zip_longest
 from os import getenv
 from pprint import pprint
-from sys import argv, exc_info
+from sys import exc_info
 
 from dotenv import load_dotenv
 from psaw import PushshiftAPI
 import psycopg2
+
+
+class CDFAction(Action):
+    def __init__(self, option_strings, dest, nargs=None, **kwargs):
+        if nargs is not None:
+            raise ValueError("nargs not allowed")
+        super(CDFAction, self).__init__(option_strings, dest, nargs=0, **kwargs)
+
+    def __call__(self, parser, namespace, values, option_string=None):
+        api = PushshiftAPI()
+        cdf = list(api.search_submissions(limit=2, subreddit='anime', author='AnimeMod',
+                                          q='Casual Discussion Fridays'))[-1].id
+        setattr(namespace, self.dest, cdf)
+
+
+def parse_args():
+    parser = ArgumentParser(description='Ingests Reddit comments')
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument('--cdf', action=CDFAction, help='use the second most recently posted CDF\'s id as the thread id')
+    group.add_argument('--thread', help='use the specified thread id')
+    args = parser.parse_args()
+    pprint(args)
+    return args
 
 
 def get_comments(threadname):
@@ -84,7 +108,7 @@ def ingest_comments(comments):
     connection.commit()
 
     # sanity check
-    cur.execute('select * from commentsv2 limit 1;')
+    cur.execute('select * from commentsv2 where link_id=%s limit 1;', [c['link_id']])
     print(cur.fetchone())
     cur.execute('select count(*) from commentsv2 where link_id=%s;', [c['link_id']])
     print(cur.fetchone())
@@ -96,7 +120,8 @@ def ingest_comments(comments):
 
 def main():
     load_dotenv()
-    threadname = argv[1]
+    args = parse_args()
+    threadname = args.thread if args.thread else args.cdf
     comments = acquire_comments(threadname)
     # pprint(comments)
     pprint(comments[-1])
