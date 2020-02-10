@@ -62,9 +62,3 @@ typings/
 
 # vim spam
 .*.un~
-
-# output spam
-*.html
-*.png
-*.svg
-*.csv
