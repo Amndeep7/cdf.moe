@@ -19,17 +19,18 @@ services:
       - rti_pgdata:/var/lib/postgresql/data
     networks:
       - rti_backend
-  server:
-    build: ./server
-    image: server:latest
+  api:
+    build: ./api
+    image: api:latest
     env_file: .env
     restart: always
     depends_on:
       - db
     networks:
       - rti_backend
+      - rti_nginx
     volumes:
-      - './server:/code'
+      - './api:/code'
       - '/code/node_modules'
     ports:
       - '3000:3000'
@@ -37,3 +38,5 @@ volumes:
   rti_pgdata:
 networks:
   rti_backend:
+  rti_nginx:
+    external: true

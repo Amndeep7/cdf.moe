@@ -26,6 +26,8 @@ Makes graphs from comments on Reddit threads
 
 ## Other stuff
 - Issues and PRs welcome, particularly for adding on graph types
+- This is very much due to a local configuration setup, but you're going to have to also set up an external docker network
+  - Run `docker network create rti_nginx`
 
 ----
 

@@ -1,7 +1,7 @@
 const express = require('express');
 const logger = require('morgan');
 
-const api = require('./api/api');
+const api = require('./routes/api');
 
 const app = express();
 
