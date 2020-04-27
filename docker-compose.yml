@@ -1,14 +1,14 @@
 version: '3.7'
 services:
   acquire:
-    build: ./redditthreadinspector
+    build: ./acquire
     image: acquire:latest
     env_file: .env
     restart: always
     depends_on:
       - db
     networks:
-      - redditthreadinspector
+      - rti_backend
   db:
     image: postgres:12-alpine
     env_file: .env
@@ -18,8 +18,25 @@ services:
     volumes:
       - rti_pgdata:/var/lib/postgresql/data
     networks:
-      - redditthreadinspector
+      - rti_backend
+  api:
+    build: ./api
+    image: api:latest
+    env_file: .env
+    restart: always
+    depends_on:
+      - db
+    networks:
+      - rti_backend
+      - rti_nginx
+    volumes:
+      - './api:/code'
+      - '/code/node_modules'
+    ports:
+      - '3000:3000'
 volumes:
   rti_pgdata:
 networks:
-  redditthreadinspector:
+  rti_backend:
+  rti_nginx:
+    external: true
