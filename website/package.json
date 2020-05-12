@@ -11,7 +11,7 @@
     "core-js": "^3.6.4",
     "vue": "^2.6.11",
     "vue-router": "^3.1.6",
-    "vuex": "^3.1.3"
+    "vuex": "^3.4.0"
   },
   "devDependencies": {
     "@vue/cli": "^4.3.1",
@@ -27,7 +27,6 @@
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "git+https://github.com/vuejs/eslint-plugin-vue.git",
-    "eslint-plugin-vue-a11y": "0.0.31",
     "stylelint": "^13.3.3",
     "stylelint-config-sass-guidelines": "^7.0.0",
     "stylelint-config-standard": "^20.0.0",
@@ -45,8 +44,7 @@
     },
     "extends": [
       "airbnb-base",
-      "plugin:vue/vue3-recommended",
-      "plugin:vue-a11y/recommended"
+      "plugin:vue/vue3-recommended"
     ],
     "globals": {
       "Atomics": "readonly",
@@ -58,8 +56,7 @@
       "sourceType": "module"
     },
     "plugins": [
-      "vue",
-      "vue-a11y"
+      "vue"
     ],
     "settings": {
       "import/resolver": {
