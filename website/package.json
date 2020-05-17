@@ -88,6 +88,16 @@
         {
           "argsIgnorePattern": "^_"
         }
+      ],
+      "semi": [
+        "warn",
+        "always"
+      ],
+      "vue/component-tags-order": [
+        "error",
+        {
+          "order": ["template", "script", "style"]
+        }
       ]
     }
   },
