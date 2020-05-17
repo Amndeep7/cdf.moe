@@ -3,7 +3,6 @@
     <v-app-bar
       app
       color="primary"
-      dark
     >
       <div class="d-flex align-center">
         <v-img
@@ -38,23 +37,27 @@
     </v-app-bar>
 
     <v-content>
-      <hello-world />
+      <home />
     </v-content>
   </v-app>
 </template>
 
 <script>
-  import HelloWorld from './components/HelloWorld.vue';
+  import Home from './views/Home.vue';
 
   export default {
     name: 'App',
 
     components: {
-      HelloWorld,
+      Home,
     },
 
     data: () => ({
     //
     }),
+
+    created () {
+      this.$vuetify.theme.dark = true;
+    },
   };
 </script>
