@@ -38,23 +38,23 @@
     </v-app-bar>
 
     <v-content>
-      <HelloWorld />
+      <hello-world />
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+  import HelloWorld from './components/HelloWorld.vue';
 
-export default {
-  name: 'App',
+  export default {
+    name: 'App',
 
-  components: {
-    HelloWorld,
-  },
+    components: {
+      HelloWorld,
+    },
 
-  data: () => ({
+    data: () => ({
     //
-  }),
-};
+    }),
+  };
 </script>

@@ -21,18 +21,18 @@
     <p><b>/u/max_turner</b> Knows who's Best!</p>
     <p><b>/u/Sgtvp</b> Has the Goods!</p>
     <p><b>/u/HelioA</b> Loves her some <del>Precure</del> Donuts!</p>
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <hello-world msg="Welcome to Your Vue.js App" />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+  import HelloWorld from '@/components/HelloWorld.vue';
 
-export default {
-  name: 'Home',
-  components: {
-    HelloWorld,
-  },
-};
+  export default {
+    name: 'Home',
+    components: {
+      HelloWorld,
+    },
+  };
 </script>
