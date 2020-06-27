@@ -21,6 +21,7 @@
     <p><b>/u/max_turner</b> Knows who's Best!</p>
     <p><b>/u/Sgtvp</b> Has the Goods!</p>
     <p><b>/u/HelioA</b> Loves her some <del>Precure</del> Donuts!</p>
+    <p><b>/u/Shimmering-Sky</b> Illustrates with Vectors!</p>
     <hello-world msg="Welcome to Your Vue.js App" />
   </div>
 </template>
