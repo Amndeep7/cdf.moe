@@ -62,3 +62,6 @@ typings/
 
 # vim spam
 .*.un~
+
+# distributables should be ignored too
+dist/

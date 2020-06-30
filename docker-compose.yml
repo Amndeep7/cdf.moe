@@ -34,6 +34,19 @@ services:
       - '/code/node_modules'
     ports:
       - '3000:3000'
+  website:
+    build: ./website
+    image: website:latest
+    restart: always
+    depends_on:
+      - api
+    networks:
+      - rti_nginx
+    volumes:
+      - './website:/code'
+      - '/code/node_modules'
+    ports:
+      - '8080:8080'
 volumes:
   rti_pgdata:
 networks:

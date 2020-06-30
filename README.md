@@ -26,8 +26,13 @@ Makes graphs from comments on Reddit threads
 
 ## Other stuff
 - Issues and PRs welcome, particularly for adding on graph types
-- This is very much due to a local configuration setup, but you're going to have to also set up an external docker network
-  - Run `docker network create rti_nginx`
+- This is very much due to a local configuration setup, but you're going to have to do a few other things
+  1) Set up an external docker network
+    - Run `docker network create rti_nginx`
+    - This is to connect nginx with the services
+  2) Build the site
+    - Run `docker exec -it redditthreadinspector_website_1 npm run build` and point nginx at the resultant /dist
+    - This is because by default the docker container for the website only serves it locally, so if you want to make it available outside, you're gonna need to build it
 
 ----
 
