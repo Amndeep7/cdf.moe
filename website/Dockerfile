@@ -4,7 +4,7 @@ WORKDIR /code
 
 ENV PATH /code/node_modules/.bin:$PATH
 
-RUN apk update && apk add --no-cache git wget bash
+RUN apk update && apk add --no-cache git wget
 
 ARG IOSEVKA_VERSION=3.2.2
 
