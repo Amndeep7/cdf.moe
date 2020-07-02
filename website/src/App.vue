@@ -2,11 +2,11 @@
   <v-app>
     <v-app-bar
       app
-      color="primary"
+      color='primary'
     >
       <v-btn
-        :href="cdfHyperlink"
-        target="_blank"
+        :href='cdfHyperlink'
+        target='_blank'
         text
       >
         CDF
@@ -15,16 +15,10 @@
       <v-spacer />
 
       <v-btn
-        to="/"
+        to='/'
         text
       >
         Home
-      </v-btn>
-      <v-btn
-        to="/legal"
-        text
-      >
-        Legal
       </v-btn>
     </v-app-bar>
 
@@ -67,7 +61,7 @@
   };
 </script>
 
-<style lang="scss">
+<style lang='scss'>
 @import '@/styles/fonts';
 @import '@/styles/variables';
 </style>
