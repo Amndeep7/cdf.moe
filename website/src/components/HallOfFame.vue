@@ -55,9 +55,7 @@
 
     methods: {
       embedifyPixiv (pathname) {
-        console.log(pathname);
         const id = pathname.match(/\d+$/);
-        console.log(id);
         return `https://embed.pixiv.net/embed_mk2.php?id=${id}&size=medium`;
       },
 
