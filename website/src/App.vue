@@ -2,7 +2,6 @@
   <v-app>
     <v-app-bar
       app
-      color='primary'
     >
       <v-btn
         :href='cdfHyperlink'
@@ -63,5 +62,7 @@
 
 <style lang='scss'>
 @import '@/styles/fonts';
+@import '@/styles/colors';
 @import '@/styles/variables';
+@import '@/styles/overrides/index';
 </style>

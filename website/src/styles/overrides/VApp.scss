@@ -1,0 +1,16 @@
+#app {
+  background-color: elevate('base03', '0');
+  color: map-get($solarized, 'base0');
+
+  .text {
+    &--primary {
+      color: map-get($solarized, 'base0');
+    }
+    &--secondary {
+      color: map-get($solarized, 'base01');
+    }
+    &--disabled {
+      color: map-get($solarized, 'base02');
+    }
+  }
+}
