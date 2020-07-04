@@ -45,6 +45,7 @@ services:
     volumes:
       - './website:/code'
       - '/code/node_modules'
+      - '/code/src/assets/fonts'
     ports:
       - '8080:8080'
 volumes:

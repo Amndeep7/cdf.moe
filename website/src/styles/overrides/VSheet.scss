@@ -1,0 +1,5 @@
+#app .v-sheet {
+  background-color: elevate('base03', '1');
+  border-color: elevate('base03', '1');
+  color: map-get($solarized, 'base0');
+}

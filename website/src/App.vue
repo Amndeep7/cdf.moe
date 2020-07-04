@@ -2,62 +2,67 @@
   <v-app>
     <v-app-bar
       app
-      color="primary"
     >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
+      <v-btn
+        :href='cdfHyperlink'
+        target='_blank'
+        text
+      >
+        CDF
+      </v-btn>
 
       <v-spacer />
 
       <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
+        to='/'
         text
       >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
+        Home
       </v-btn>
     </v-app-bar>
 
-    <v-content>
-      <home />
-    </v-content>
+    <v-main>
+      <router-view />
+    </v-main>
   </v-app>
 </template>
 
 <script>
-  import Home from './views/Home.vue';
-
   export default {
     name: 'App',
 
     components: {
-      Home,
     },
 
-    data: () => ({
-    //
-    }),
+    data () {
+      return {
+        cdfHyperlink: 'https://cdf.moe',
+      };
+    },
 
     created () {
       this.$vuetify.theme.dark = true;
     },
+
+    beforeMount () {
+      this.setCDFHyperlink();
+    },
+
+    methods: {
+      async setCDFHyperlink () {
+        const res = await fetch('https://api.pushshift.io/reddit/search/submission/?subreddit=anime&size=1&author=animemod&&title=casual%20discussion%20fridays');
+        if (res.ok) {
+          const { data } = await res.json();
+          this.cdfHyperlink = data[0].full_link;
+        }
+      },
+    },
   };
 </script>
+
+<style lang='scss'>
+@import '@/styles/fonts';
+@import '@/styles/colors';
+@import '@/styles/variables';
+@import '@/styles/overrides/index';
+</style>
