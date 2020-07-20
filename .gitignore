@@ -65,3 +65,6 @@ typings/
 
 # distributables should be ignored too
 dist/
+
+# raw font files not needed
+**/assets/fonts/

@@ -1,9 +1,0 @@
-#app .v-card {
-  background-color: elevate('base03', '1');
-  color: map-get($solarized, 'base0');
-
-  .v-card__text,
-  .v-card__subtitle {
-    color: map-get($solarized, 'base01');
-  }
-}
