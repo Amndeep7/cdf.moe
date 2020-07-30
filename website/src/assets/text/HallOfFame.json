@@ -7,89 +7,269 @@
     {
       "username": "Iron_Gland",
       "tagline": "Gets tagged a Lot!",
+      "art": [
+        {
+          "name": "Iron_Gland_0"
+        }
+      ],
       "style": {
         "font-family": "'Chiller', 'Iosevka Aile Web', san-serif"
       }
     },
     {
       "username": "RandomRedditorWithNo",
-      "tagline": "Leads the Search!"
+      "tagline": "Leads the Search!",
+      "art": [
+        {
+          "name": "RandomRedditorWithNo_0",
+          "link": "https://www.pixiv.net/en/artworks/76378240"
+        }
+      ]
     },
     {
       "username": "lilyvess",
-      "tagline": "Understands it All!"
+      "tagline": "Understands it All!",
+      "art": [
+        {
+          "name": "lilyvess_0"
+        },
+        {
+          "name": "lilyvess_1"
+        }
+      ]
     },
     {
       "username": "AmeteurElitist",
-      "tagline": "Spells the Best!"
+      "tagline": "Spells the Best!",
+      "art": [
+        {
+          "name": "AmeteurElitist_0",
+          "link": "https://www.pixiv.net/en/artworks/78745625"
+        }
+      ]
     },
     {
       "username": "thisismyanimealt",
-      "tagline": "Codes <a href='https://friday.moe'>friday.Moe</a>!"
+      "tagline": "Codes <a href='https://friday.moe'>friday.Moe</a>!",
+      "art": [
+        {
+          "name": "thisismyanimealt_0"
+        }
+      ]
     },
     {
       "username": "Vinesma",
-      "tagline": "Offers to Program!"
+      "tagline": "Offers to Program!",
+      "art": [
+        {
+          "name": "Vinesma_0",
+          "link": "https://www.deviantart.com/tetsuok9999/art/Shinobu-Oshino-553175932"
+        }
+      ]
     },
     {
       "username": "Lynxiusk",
-      "tagline": "Makes the piano Forte!"
+      "tagline": "Makes the piano Forte!",
+      "art": [
+        {
+          "name": "Lynxiusk_0"
+        }
+      ]
     },
     {
       "username": "TheRiyria",
-      "tagline": "Corners the 3x3!"
+      "tagline": "Corners the 3x3!",
+      "art": [
+        {
+          "name": "TheRiyria_0",
+          "link": "https://www.pixiv.net/en/artworks/71877537"
+        }
+      ]
     },
     {
       "username": "ha_ck_rm_rk",
-      "tagline": "Shills for Idols!"
+      "tagline": "Shills for Idols!",
+      "art": [
+        {
+          "name": "ha_ck_rm_rk_0",
+          "link": "https://www.pixiv.net/en/artworks/76299229"
+        },
+        {
+          "name": "ha_ck_rm_rk_1",
+          "link": "https://www.pixiv.net/en/artworks/54578175"
+        }
+      ]
     },
     {
       "username": "ToadOnTheLonestar",
-      "tagline": "Lewds from Texas!"
+      "tagline": "Lewds from Texas!",
+      "art": [
+        {
+          "name": "ToadOnTheLonestar_0",
+          "link": "https://www.pixiv.net/en/artworks/26843835"
+        },
+        {
+          "name": "ToadOnTheLonestar_1",
+          "link": "https://www.pixiv.net/en/artworks/78756392"
+        },
+        {
+          "name": "ToadOnTheLonestar_2",
+          "link": "https://www.pixiv.net/en/artworks/78351455"
+        }
+      ]
     },
     {
       "username": "Dagonsnake",
-      "tagline": "Goes back to School!"
+      "tagline": "Goes back to School!",
+      "art": [
+        {
+          "name": "Dagonsnake_0",
+          "link": "https://www.pixiv.net/en/artworks/72139856"
+        }
+      ]
     },
     {
       "username": "Rins_husbando",
-      "tagline": "Loves his Waifu!"
+      "tagline": "Loves his Waifu!",
+      "art": [
+        {
+          "name": "Rins_husbando_0",
+          "link": "https://www.pixiv.net/en/artworks/56286693"
+        }
+      ]
     },
     {
       "username": "DarkAudit",
-      "tagline": "Wins via Experience!"
+      "tagline": "Wins via Experience!",
+      "art": [
+        {
+          "name": "DarkAudit_0",
+          "link": "https://www.pixiv.net/en/artworks/71735743"
+        }
+      ]
     },
     {
       "username": "max_turner",
-      "tagline": "Knows who's Best!"
+      "tagline": "Knows who's Best!",
+      "art": [
+        {
+          "name": "max_turner_0",
+          "link": "https://www.pixiv.net/en/artworks/31808463"
+        },
+        {
+          "name": "max_turner_1",
+          "link": "https://www.pixiv.net/en/artworks/27863787"
+        },
+        {
+          "name": "max_turner_2",
+          "link": "https://www.pixiv.net/en/artworks/24511378"
+        },
+        {
+          "name": "max_turner_3",
+          "link": "https://www.pixiv.net/en/artworks/30993650"
+        },
+        {
+          "name": "max_turner_4",
+          "link": "https://www.pixiv.net/en/artworks/54715356"
+        },
+        {
+          "name": "max_turner_5",
+          "link": "https://www.pixiv.net/en/artworks/42132615"
+        }
+      ]
     },
     {
       "username": "Sgtvp",
-      "tagline": "Has the Goods!"
+      "tagline": "Has the Goods!",
+      "art": [
+        {
+          "name": "Sgtvp_0",
+          "link": "https://twitter.com/Inhoso_art/status/1174102437554245632"
+        }
+      ]
     },
     {
       "username": "HelioA",
-      "tagline": "Loves her some <del>Precure</del> Donuts!"
+      "tagline": "Loves her some <del>Precure</del> Donuts!",
+      "art": [
+        {
+          "name": "HelioA_0",
+          "link": "https://www.pixiv.net/en/artworks/80935331"
+        }
+      ]
     },
     {
       "username": "Shimmering-Sky",
-      "tagline": "Illustrates with Vectors!"
+      "tagline": "Illustrates with Vectors!",
+      "art": [
+        {
+          "name": "Shimmering-Sky_0"
+        },
+        {
+          "name": "Shimmering-Sky_1"
+        }
+      ]
     },
     {
       "username": "kaiju_is_here",
       "tagline": "Is not Bored!",
       "art": [
-        "https://www.pixiv.net/en/artworks/82649629",
-        "https://www.pixiv.net/en/artworks/82667229"
+        {
+          "name": "kaiju_is_here_0",
+          "link": "https://www.pixiv.net/en/artworks/82649629"
+        },
+        {
+          "name": "kaiju_is_here_1",
+          "link": "https://www.pixiv.net/en/artworks/82667229"
+        }
       ]
     },
     {
       "username": "prrg",
       "tagline": "Nyaas who's Best‽",
       "art": [
-        "https://www.pixiv.net/en/artworks/72378694",
-        "https://www.pixiv.net/en/artworks/37577411",
-        "https://www.pixiv.net/en/artworks/42038824"
+        {
+          "name": "prrg_0",
+          "link": "https://www.pixiv.net/en/artworks/72378694"
+        },
+        {
+          "name": "prrg_1",
+          "link": "https://www.pixiv.net/en/artworks/37577411"
+        },
+        {
+          "name": "prrg_2",
+          "link": "https://www.pixiv.net/en/artworks/42038824"
+        }
+      ]
+    },
+    {
+      "username": "Tetraika",
+      "tagline": "Watches with his Mom!",
+      "art": [
+        {
+          "name": "Tetraika_0",
+          "link": "https://twitter.com/dnwls3010/status/1276119827921244160"
+        }
+      ]
+    },
+    {
+      "username": "DatMageDoe",
+      "tagline": "Records the Winner!",
+      "art": [
+        {
+          "name": "DatMageDoe_0",
+          "link": "https://www.pixiv.net/en/artworks/60252656"
+        }
+      ]
+    },
+    {
+      "username": "porpoiseoflife",
+      "tagline": "Joins the Class!",
+      "art": [
+        {
+          "name": "porpoiseoflife_0",
+          "link": "https://www.pixiv.net/en/artworks/82486913"
+        }
       ]
     }
   ]
