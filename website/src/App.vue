@@ -31,9 +31,6 @@
   export default {
     name: 'App',
 
-    components: {
-    },
-
     data () {
       return {
         cdfHyperlink: 'https://cdf.moe',
@@ -61,8 +58,6 @@
 </script>
 
 <style lang='scss'>
-@import '@/styles/fonts';
-@import '@/styles/colors';
-@import '@/styles/variables';
-@import '@/styles/overrides/index';
+  @import '@/styles/fonts';
+  @import '@/styles/global_styles';
 </style>

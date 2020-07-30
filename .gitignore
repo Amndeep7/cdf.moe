@@ -65,3 +65,9 @@ typings/
 
 # distributables should be ignored too
 dist/
+
+# raw font files not needed
+**/assets/fonts/
+
+# fanart belongs to other people and not me
+**/assets/fanart/
