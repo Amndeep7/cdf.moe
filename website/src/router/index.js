@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
+import Home from '@/views/Home';
 
 Vue.use(VueRouter);
 
@@ -13,7 +13,7 @@ const routes = [
   {
     path: '/legal',
     name: 'Legal',
-    component: () => import('../views/Legal.vue'),
+    component: () => import('@/views/Legal'),
   },
 ];
 

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import HallOfFame from '@/components/HallOfFame.vue';
+  import HallOfFame from '@/components/HallOfFame';
   import titleMixin from '@/mixins/title';
 
   export default {
