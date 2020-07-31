@@ -120,17 +120,15 @@
     data () {
       return {
         hallOfFamers: HallOfFamers['hall-of-famers'].map((hallOfFamer) => ({ expand: false, ...hallOfFamer })),
-        debouncedReflow: debounce(() => this.$nextTick(() => { this.$nextTick(() => { console.log('yeet'); this.$refs.stack.reflow(); }); }), '300ms'),
+        debouncedReflow: debounce(() => this.$nextTick(() => { this.$nextTick(() => { this.$refs.stack.reflow(); }); }), '300ms'),
       };
     },
 
     methods: {
-      onImageLoad (val) {
-        console.log(val);
+      onImageLoad () {
         this.debouncedReflow();
       },
       onExpansion (index) {
-        console.log('expanding');
         this.hallOfFamers[index].expand = !this.hallOfFamers[index].expand;
         this.$nextTick(() => this.debouncedReflow());
       },

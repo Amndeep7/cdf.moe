@@ -6,11 +6,16 @@
 
 <script>
   import HallOfFame from '@/components/HallOfFame.vue';
+  import titleMixin from '@/mixins/title';
 
   export default {
     name: 'Home',
     components: {
       HallOfFame,
     },
+    mixins: [
+      titleMixin,
+    ],
+    title: 'Home',
   };
 </script>
