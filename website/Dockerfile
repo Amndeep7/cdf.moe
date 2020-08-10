@@ -1,10 +1,14 @@
-FROM node:14.0.0-alpine
+FROM ubuntu:20.04
 
 WORKDIR /code
 
 ENV PATH /code/node_modules/.bin:$PATH
 
-RUN apk update && apk add --no-cache git wget
+RUN apt-get update \
+  && apt-get install -y sudo curl git wget unzip python3 make g++ fontconfig fonts-symbola \
+  && curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - \
+  && apt-get install -y nodejs \
+  && rm -rf /var/lib/apt/lists/*
 
 ARG IOSEVKA_VERSION=3.2.2
 

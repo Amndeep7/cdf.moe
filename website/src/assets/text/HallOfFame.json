@@ -271,6 +271,53 @@
           "link": "https://www.pixiv.net/en/artworks/82486913"
         }
       ]
+    },
+    {
+      "username": "NuclearStudent",
+      "tagline": "Nukes the Thread!",
+      "art": [
+        {
+          "name": "NuclearStudent_0"
+        },
+        {
+          "name": "NuclearStudent_1",
+          "link": "https://aminoapps.com/c/monogatari/page/blog/shinobu-fanart/2vje_gPguNuxYMZR3vgEQoD5RdVbam4Jq6v"
+        }
+      ]
+    },
+    {
+      "username": "dadnaya",
+      "tagline": "Learns the Kanji!",
+      "art": [
+        {
+          "name": "dadnaya_0",
+          "link": "https://twitter.com/ogipote/status/1019888631366934528"
+        }
+      ]
+    },
+    {
+      "username": "CT_BINO",
+      "tagline": "Grinds through Ranked!",
+      "art": [
+        {
+          "name": "CT_BINO_0",
+          "link": "https://www.pixiv.net/en/artworks/20539689"
+        },
+        {
+          "name": "CT_BINO_1",
+          "link": "https://www.pixiv.net/en/artworks/54975312"
+        }
+      ]
+    },
+    {
+      "username": "chilidirigible",
+      "tagline": "Sketches the <del>Fish</del> Machinery!",
+      "art": [
+        {
+          "name": "chilidirigible_0",
+          "link": "https://www.pixiv.net/en/artworks/77733152"
+        }
+      ]
     }
   ]
 }
