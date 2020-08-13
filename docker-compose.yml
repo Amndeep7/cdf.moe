@@ -8,7 +8,7 @@ services:
     depends_on:
       - db
     networks:
-      - rti_backend
+      - cdf.moe_backend
   db:
     image: postgres:12-alpine
     env_file: .env
@@ -16,9 +16,9 @@ services:
     expose:
       - '5432'
     volumes:
-      - rti_pgdata:/var/lib/postgresql/data
+      - cdf.moe_pgdata:/var/lib/postgresql/data
     networks:
-      - rti_backend
+      - cdf.moe_backend
   api:
     build: ./api
     image: api:latest
@@ -27,8 +27,8 @@ services:
     depends_on:
       - db
     networks:
-      - rti_backend
-      - rti_nginx
+      - cdf.moe_backend
+      - cdf.moe_nginx
     volumes:
       - './api:/code'
       - '/code/node_modules'
@@ -41,7 +41,7 @@ services:
     depends_on:
       - api
     networks:
-      - rti_nginx
+      - cdf.moe_nginx
     volumes:
       - './website:/code'
       - '/code/node_modules'
@@ -49,8 +49,8 @@ services:
     ports:
       - '8080:8080'
 volumes:
-  rti_pgdata:
+  cdf.moe_pgdata:
 networks:
-  rti_backend:
-  rti_nginx:
+  cdf.moe_backend:
+  cdf.moe_nginx:
     external: true

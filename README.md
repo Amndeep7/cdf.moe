@@ -1,4 +1,4 @@
-# redditthreadinspector
+# CDF.MOE
 Makes graphs from comments on Reddit threads
 
 ## Preparing for the data
@@ -15,23 +15,23 @@ Makes graphs from comments on Reddit threads
   - `--cdf` grabs the most recently completed [CDF](https://old.reddit.com/r/anime/search?q=title%3A%22Casual+Discussion+Fridays%22+author%3AAnimeMod&restrict_sr=on&sort=new&t=week)
   - `--all` grabs all previous FTFs and CDFs (including the one that's currently in progress)
 - Run:
-  1) `docker exec -it redditthreadinspector_acquire_1 /bin/bash`
+  1) `docker exec -it cdf.moe_acquire_1 /bin/bash`
   2) `poetry run python3 acquire.py --OPTION`
   3) Wait potentially quite a while or a few seconds-minutes for it to run depending on which option you chose
 - The default behavior is to automatically run the `--cdf` option on a weekly basis
 
 ## Viewing the data
-- If you wanna see the raw data, run `docker exec -it redditthreadinspector_db_1 psql -U YOUR_POSTGRES_USER THE_DB_DATABASE`
+- If you wanna see the raw data, run `docker exec -it cdf.moe_db_1 psql -U YOUR_POSTGRES_USER THE_DB_DATABASE`
 - Visit [cdf.moe](https://cdf.moe) for fancy graphs for CDF
 
 ## Other stuff
 - Issues and PRs welcome, particularly for adding on graph types
 - This is very much due to a local configuration setup, but you're going to have to do a few other things
   1) Set up an external docker network
-    - Run `docker network create rti_nginx`
+    - Run `docker network create cdf.moe_nginx`
     - This is to connect nginx with the services
   2) Build the site
-    - Run `docker exec -it redditthreadinspector_website_1 npm run build` and point nginx at the resultant /dist
+    - Run `docker exec -it cdf.moe_website_1 npm run build` and point nginx at the resultant /dist
     - This is because by default the docker container for the website only serves it locally, so if you want to make it available outside, you're gonna need to build it
 
 ----
