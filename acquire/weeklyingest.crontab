@@ -1,3 +1,0 @@
-# scrapes cdf on a weekly basis
-0 2 * * Fri poetry run python3 acquire.py --cdf
-# this space intentionally left blank
